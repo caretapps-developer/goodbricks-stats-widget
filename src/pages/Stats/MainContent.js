@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import Stats from './Stats';
 
-export default function MainContent({ campaign, onDonateClick }) {
+export default function MainContent({ campaign }) {
   return (
     <React.Fragment>
       {campaign.organization.publicId && campaign.title && (

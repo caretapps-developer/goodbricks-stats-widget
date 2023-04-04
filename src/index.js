@@ -91,7 +91,7 @@ const campaign = {
   },
   percentage: 60,
   pledgePercentage: 75,
-  raised: 1414180.16,
+  raised: 1414,
   taxDeductible: true,
   title: 'ICSD Expansion - It is your Sadaqah Jariah',
   zakatEligible: false,
@@ -101,7 +101,7 @@ if (document.getElementById('stats-widget-root')) {
   ReactDOM.render(<App campaign={campaign} />, document.getElementById('stats-widget-root'));
 }
 
-window.CampaignWidget = {
+window.StatsWidget = {
   mount: (props) => {
     const el = document.getElementById('stats-widget');
     ReactDOM.render(<App campaign={props.campaign} />, el);

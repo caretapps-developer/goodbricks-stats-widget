@@ -2,7 +2,6 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core';
 import { Container } from '@material-ui/core';
-import SocialMediaMetaTags from '../../components/SocialMediaMetaTags';
 import MainContent from './MainContent';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,14 +16,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Index({ campaign, onDonateClick }) {
+function Index({ campaign }) {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <SocialMediaMetaTags campaign={campaign} />
       <Container maxWidth="lg" className={classes.container}>
         <main>
-          <MainContent campaign={campaign} onDonateClick={onDonateClick} />
+          <MainContent campaign={campaign} />
         </main>
       </Container>
     </React.Fragment>

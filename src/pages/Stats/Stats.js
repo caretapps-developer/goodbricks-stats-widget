@@ -1,16 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { Box, makeStyles } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress/LinearProgress';
-import ListItemText from '@material-ui/core/ListItemText/ListItemText';
-import List from '@material-ui/core/List/List';
-import ListItem from '@material-ui/core/ListItem/ListItem';
 import NumberFormat from 'react-number-format';
-import { Stop } from '@material-ui/icons';
 
-const pledgeColor = '#f6ce95';
 const useStyles = makeStyles((theme) => ({
   closeButton: {
     marginTop: theme.spacing(-0.5),
@@ -31,11 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
   linerProgress: {
     '& .gbcpgnwgt-MuiLinearProgress-colorPrimary': {
-      backgroundColor: pledgeColor,
+      backgroundColor: theme.palette.grey[400],
     },
-    // "& .gbcpgnwgt-MuiLinearProgress-barColorPrimary": {
-    //   backgroundColor: "#342B50"
-    // },
     '& .gbcpgnwgt-MuiLinearProgress-dashedColorPrimary': {
       backgroundColor: theme.palette.grey[400],
       backgroundImage: 'none',
@@ -67,27 +58,9 @@ export default function Stats(props) {
         <LinearProgress
           variant="buffer"
           value={props.campaign.percentage}
-          valueBuffer={props.campaign.pledgePercentage}
+          // valueBuffer={props.campaign.pledgePercentage}
           classes={{ root: classes.linerProgress }}
         />
-        <Grid container spacing={2}>
-          <Grid>
-            <List dense={true}>
-              <ListItem disableGutters>
-                <Stop color="primary" />
-                <ListItemText primary="Collected" />
-              </ListItem>
-            </List>
-          </Grid>
-          <Grid>
-            <List dense={true}>
-              <ListItem disableGutters>
-                <Stop style={{ color: pledgeColor }} />
-                <ListItemText primary="Pledged" />
-              </ListItem>
-            </List>
-          </Grid>
-        </Grid>
       </Box>
     </React.Fragment>
   );
