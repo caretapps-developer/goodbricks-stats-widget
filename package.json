@@ -1,0 +1,63 @@
+{
+  "name": "goodbricks-stats-widget",
+  "version": "1.0.5",
+  "description": "Goodbricks standalone stats widget ",
+  "author": "Azeem Memon <developer@caretapps.com>",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false CI=false react-scripts build",
+    "cp-chunk": "aws s3 cp ./build/static/js/2.*.chunk.js s3://sandbox.cdn.goodbricks.org/dynamic/js/stats/chunk.js --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --acl public-read",
+    "cp-main": "aws s3 cp ./build/static/js/main.*.chunk.js s3://sandbox.cdn.goodbricks.org/dynamic/js/stats/main.js --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --acl public-read",
+    "cp-runtime": "aws s3 cp ./build/static/js/runtime-main.*.js s3://sandbox.cdn.goodbricks.org/dynamic/js/stats/runtime-main.js --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --acl public-read",
+    "s3-deploy-sandbox": "GENERATE_SOURCEMAP=false react-scripts build ; npm run cp-chunk; npm run cp-main; npm run cp-runtime",
+    "cp-chunk-prod": "aws s3 cp ./build/static/js/2.*.chunk.js s3://cdn.goodbricks.org/dynamic/js/stats/chunk.js --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --acl public-read",
+    "cp-main-prod": "aws s3 cp ./build/static/js/main.*.chunk.js s3://cdn.goodbricks.org/dynamic/js/stats/main.js --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --acl public-read",
+    "cp-runtime-prod": "aws s3 cp ./build/static/js/runtime-main.*.js s3://cdn.goodbricks.org/dynamic/js/stats/runtime-main.js --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --acl public-read",
+    "s3-deploy-prod": "GENERATE_SOURCEMAP=false react-scripts build ; npm run cp-chunk-prod; npm run cp-main-prod; npm run cp-runtime-prod"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 10",
+    "not op_mini all"
+  ],
+  "dependencies": {
+    "@material-ui/core": "4.7.2",
+    "@material-ui/icons": "4.5.1",
+    "@material-ui/pickers": "3.2.8",
+    "@material-ui/styles": "4.7.1",
+    "@material-ui/system": "4.7.1",
+    "dayjs": "^1.8.24",
+    "prop-types": "15.7.2",
+    "react": "^16.12.0",
+    "react-app-polyfill": "1.0.5",
+    "react-copy-to-clipboard": "^5.0.2",
+    "react-number-format": "^4.4.1",
+    "react-dom": "16.12.0",
+    "react-router-dom": "5.1.2",
+    "react-scripts": "3.4.1",
+    "sanitize-html": "^2.1.2",
+    "styled-components": "4.4.1"
+  },
+  "devDependencies": {
+    "aws-amplify": "^3.3.27",
+    "husky": "^4.2.5",
+    "lint-staged": ">=10",
+    "prettier": "2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
